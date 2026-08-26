@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# plower's CodeRabbit settings for `.coderabbit.yaml` at the repository root.
+#
+# Keys plower owns:
+#   reviews.profile                        chill: real problems, few nitpicks
+#   reviews.auto_review.drafts             false: drafts are not reviewed
+#   reviews.path_instructions, path "**/*" the prefer-refactor line below
+#   knowledge_base.code_guidelines         enabled, with CLAUDE.md in filePatterns
+#
+# When the repository already has a config, set only those keys, add the
+# "**/*" entry and the CLAUDE.md pattern next to the ones already there, and
+# keep every other setting as it is. Everything else below is a starting point
+# for a repository with no config: fill path_filters with its lockfiles,
+# generated and vendored paths, each prefixed with "!" so it is excluded
+# (a pattern without "!" limits the review to the paths it names).
+
+language: en-US
+
+reviews:
+  profile: chill
+  path_filters: []
+  request_changes_workflow: false
+  high_level_summary: true
+  auto_review:
+    enabled: true
+    drafts: false
+    # Dependency bots by name, so their PRs spend no credits. Their changes are
+    # reviewed once, inside the consolidated PR.
+    ignore_usernames:
+      - "dependabot[bot]"
+      - "renovate[bot]"
+  path_instructions:
+    - path: "**/*"
+      instructions: >-
+        Review against CLAUDE.md, this repository's standards file. Flag code
+        that copies a bad local pattern instead of refactoring it.
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "CLAUDE.md"

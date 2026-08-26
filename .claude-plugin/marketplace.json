@@ -1,0 +1,16 @@
+{
+  "name": "jannden-prompts",
+  "owner": {
+    "name": "jannden"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugins."
+  },
+  "plugins": [
+    {
+      "name": "plower",
+      "source": "./plower",
+      "description": "plower: a Claude Code Project's upkeep and standing rules. On demand: align, examine, inventory, onboard. Scheduled: consolidate, audit, calibrate. Standing rules: pushback, prefer-refactor. Sits beside Compound Engineering and needs nothing from it."
+    }
+  ]
+}

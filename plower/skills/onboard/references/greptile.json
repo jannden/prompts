@@ -1,0 +1,15 @@
+{
+  "triggerOnDrafts": false,
+  "triggerOnUpdates": true,
+  "strictness": 2,
+  "ignorePatterns": "",
+  "instructions": "Review against CLAUDE.md, this repository's standards file. Flag code that copies a bad local pattern instead of refactoring it.",
+  "customContext": {
+    "files": [
+      {
+        "path": "CLAUDE.md",
+        "description": "The repository's standards, including the plower block of standing rules."
+      }
+    ]
+  }
+}
