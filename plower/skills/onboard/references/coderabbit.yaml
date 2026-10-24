@@ -4,7 +4,10 @@
 #
 # Keys plower owns:
 #   reviews.profile                        chill: real problems, few nitpicks
+#   reviews.auto_review.enabled            false: no automatic review; a thread asks
+#                                          for each one with `@coderabbitai review`
 #   reviews.auto_review.drafts             false: drafts are not reviewed
+#   reviews.review_status                  false: no "review skipped" notice per PR
 #   reviews.path_instructions, path "**/*" the prefer-refactor line below
 #   knowledge_base.code_guidelines         enabled, with CLAUDE.md in filePatterns
 #
@@ -22,11 +25,13 @@ reviews:
   path_filters: []
   request_changes_workflow: false
   high_level_summary: true
+  review_status: false
   auto_review:
-    enabled: true
+    enabled: false
     drafts: false
     # Dependency bots by name, so their PRs spend no credits. Their changes are
-    # reviewed once, inside the consolidated PR.
+    # reviewed once, inside the consolidated PR. Applies when a review is
+    # turned on again.
     ignore_usernames:
       - "dependabot[bot]"
       - "renovate[bot]"

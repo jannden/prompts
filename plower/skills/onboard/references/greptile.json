@@ -1,6 +1,7 @@
 {
+  "skipReview": "AUTOMATIC",
   "triggerOnDrafts": false,
-  "triggerOnUpdates": true,
+  "triggerOnUpdates": false,
   "strictness": 2,
   "ignorePatterns": "",
   "instructions": "Review against CLAUDE.md, this repository's standards file. Flag code that copies a bad local pattern instead of refactoring it.",

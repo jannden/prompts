@@ -88,7 +88,7 @@ Otherwise push the branch, open the PR ready for review with `POST pulls`, and a
 - `## Review`, with the subagent's findings as step 5 says;
 - that a later consolidate run closes the unmoved originals once the user merges this PR.
 
-CodeRabbit and Greptile review it like any PR. Do not wait for them: end this run as the last line says. The scheduled task has Auto-fix pull requests on, so later review and CI events on this PR reach the thread again, and it handles them under the standing review rules.
+The review bots do not review on their own. Once the PR is open, post `@coderabbitai review` on it as a PR comment, which starts the review turns the standing rules describe, then end this run as the last line says without waiting. The scheduled task has Auto-fix pull requests on, so later review and CI events on this PR reach the thread again, and it handles them under the standing review rules.
 
 Read the PR back with `pulls/{n}` and `issues/{n}/labels`: it is open, its head is the new branch, it carries `plower:consolidated`, and its description has every `Folds` line. When any of these does not hold, end with `blocked:` naming what is missing.
 

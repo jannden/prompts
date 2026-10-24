@@ -40,7 +40,7 @@ Ask one question at a time, with `AskUserQuestion` when that tool exists, otherw
 6. **Coordinator effort**: a new Project runs the project conversation at low effort, and `align` and `inventory` invoked there run at that effort. Options: raise it to high (recommended), which costs more usage on every coordinator turn; keep it low. You cannot change it: tell the user it is Project settings > General > Coordinator effort, and report it as needing the user until they confirm.
 7. **Proof commands**: the commands a change must pass before a push. Offer the ones the repository's CI workflows and scripts run as recommended, and room for others.
 
-Do not ask about review bots or merging. The setup configures CodeRabbit and Greptile; the user merges feature PRs.
+Do not ask about review bots or merging. The setup configures CodeRabbit and Greptile to review only when a thread asks, one after the other; the user merges feature PRs.
 
 ## 3. Labels
 
@@ -50,14 +50,14 @@ Create or update the five labels in `references/labels.md` over REST and read th
 
 Read the repository's `.coderabbit.yaml`, `greptile.json` (or `.greptile/config.json`, which takes precedence when present) and root `CLAUDE.md`: from the branch of the open PR labeled `plower:setup` when one exists, so edits made only on that branch are kept, and otherwise from the default branch.
 
-- **CodeRabbit.** With no config, write `references/coderabbit.yaml`, with `path_filters` holding the repository's lockfiles, generated and vendored paths as exclusions, each prefixed with `!` (a pattern without `!` limits the review to the paths it names). With a config, change only the keys that file says plower owns, and keep every other setting.
-- **Greptile.** With no config, write `references/greptile.json`, with `ignorePatterns` holding the same paths. With a config, set only `triggerOnDrafts`, `triggerOnUpdates`, `strictness`, the prefer-refactor sentence in `instructions`, and `CLAUDE.md` in `customContext.files` (in `.greptile/files.json` when the config lives in `.greptile/`), keeping the rest.
+- **CodeRabbit.** With no config, write `references/coderabbit.yaml`, with `path_filters` holding the repository's lockfiles, generated and vendored paths as exclusions, each prefixed with `!` (a pattern without `!` limits the review to the paths it names). With a config, change only the keys that file says plower owns (among them `reviews.auto_review.enabled: false`), and keep every other setting.
+- **Greptile.** With no config, write `references/greptile.json`, with `ignorePatterns` holding the same paths. With a config, set only `skipReview` (`"AUTOMATIC"`), `triggerOnDrafts`, `triggerOnUpdates` (`false`), `strictness`, the prefer-refactor sentence in `instructions`, and `CLAUDE.md` in `customContext.files` (in `.greptile/files.json` when the config lives in `.greptile/`), keeping the rest.
 - **Older entries.** In an existing config, remove each entry an older lead plugin left: one that names a `lead:` label, a `lead/` branch, that plugin, an `AGENTS.md` lead block, or Bugbot. Name each removal in the PR description.
 - **CLAUDE.md block.** Take `references/claude-md-block.md` exactly. When the root `CLAUDE.md` holds `<!-- plower:begin -->` and `<!-- plower:end -->`, replace exactly that span and leave the rest of the file as it is. Otherwise append the block to the end of the root `CLAUDE.md`, creating the file when it is missing.
 
-When the default branch already carries all of this, open no PR. When an open PR labeled `plower:setup` exists, commit to its branch and update its description instead of opening a second one. Otherwise create `plower/setup-<yyyymmdd>` from the default branch, commit, push it, open a ready PR (not a draft, so the review bots review it) with `POST pulls`, and label it with `POST issues/{n}/labels` and `plower:setup`. When that branch name already exists from an earlier PR, report the setup PR as needing the user: run onboard again tomorrow. The description says what each change does and why.
+When the default branch already carries all of this, open no PR. When an open PR labeled `plower:setup` exists, commit to its branch and update its description instead of opening a second one. Otherwise create `plower/setup-<yyyymmdd>` from the default branch, commit, push it, open a ready PR (not a draft, since the review bots skip drafts) with `POST pulls`, and label it with `POST issues/{n}/labels` and `plower:setup`. When that branch name already exists from an earlier PR, report the setup PR as needing the user: run onboard again tomorrow. The description says what each change does and why.
 
-Read the PR back over REST: its number, head, label and changed files. Never merge it; the user does.
+Read the PR back over REST: its number, head, label and changed files. The bots no longer review on their own, so ask for its reviews as the `CLAUDE.md` block's review-turns rule says. Never merge it; the user does.
 
 ## 5. The instructions block and the memory seed
 
