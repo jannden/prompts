@@ -15,4 +15,4 @@ claude plugin install plower@jannden-prompts
 
 Then run `/plower:onboard` in a thread of your Project. The full description, the install steps for Claude Projects and a checklist to prove an install are in [plower/README.md](plower/README.md).
 
-plower works on GitHub repositories through the REST API, and its setup assumes the CodeRabbit and Greptile review bots. Read the skills before you install them: they instruct an agent to open and change pull requests in your repositories.
+plower works on GitHub repositories through the REST API, and its setup assumes the CodeRabbit and Greptile review bots, which it keeps from reviewing on their own: a thread asks for one review at a time, taking turns, so credits are spent once per round and not on every push. Read the skills before you install them: they instruct an agent to open and change pull requests in your repositories.

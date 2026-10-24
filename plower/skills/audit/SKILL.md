@@ -46,7 +46,7 @@ When a REST read answers 403 with "not enabled for this session", the session ca
 - **Subtract first.** A good cleanup deletes more than it adds. Never propose new guards, flags, wrappers or defensive checks. When something is fragile, the fix is a simpler structure, not another guard.
 - **Do not duplicate.** Leave alone a gap an open PR already covers, an area whose files a `plower/audit-` branch without a PR has taken (its cleanup started less than two days ago), whatever slug it had, and an area the user declined by closing its audit PR without merging, unless the code has changed materially since.
 - **PRs open on the repository's own GitHub,** against its default branch. No forks, no other host, no new repository.
-- **An opened PR is not a finished change.** The scheduled task has Auto-fix pull requests on, so the run that opened a PR gets its later review and CI events and handles them, and the next run checks on it.
+- **An opened PR is not a finished change.** The scheduled task has Auto-fix pull requests on, so the run that opened a PR gets its later review and CI events and handles them, and the next run checks on it. The review bots review only when asked, so a cleanup subagent posts `@coderabbitai review` on its PR once it is open, which starts the review turns in the standing rules.
 - **Separate what you know from what you guess.** A finding is verified when you can show the evidence: the reference search that came back empty, or the rule it breaks with file and line. Anything else is suspected, and a suspected finding never reaches a brief until it is verified.
 
 ## 1. Read the board

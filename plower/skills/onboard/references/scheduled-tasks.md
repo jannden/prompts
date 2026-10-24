@@ -12,7 +12,7 @@ Each task starts a new session. A run cannot be counted on to see the Project's 
 
 Each prompt passes its inputs as `key: value` pairs after the skill name, which the skills read on the invocation line or on lines of their own. In the `audit` prompt, `<n>` is the cap on cleanup PRs per run and `<tree>` is `/` for the whole repository or a folder path. `<proof commands>` is the repository's install, lint, typecheck, test and build commands on one line, from the answer to question 7.
 
-The Auto-fix pull requests setting on the task decides what happens after a run opens a PR. With it on, the PR's later review comments and CI results reach the run's session again, and the run handles them. `audit` opens its PRs through cleanup subagents of the run, and the run handles those PRs too.
+The Auto-fix pull requests setting on the task decides what happens after a run opens a PR. With it on, the PR's later review comments and CI results reach the run's session again, and the run handles them. The review bots review only when a run asks, so a run that opens a PR posts `@coderabbitai review` on it first. `audit` opens its PRs through cleanup subagents of the run, and the run handles those PRs too.
 
 ## Compounding task
 
