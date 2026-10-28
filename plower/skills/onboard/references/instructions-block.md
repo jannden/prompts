@@ -1,4 +1,4 @@
-plower 1.4.0 · instructions
+plower 1.4.1 · instructions
 
 You coordinate this Project's work. These rules come from the plower plugin.
 

@@ -3,6 +3,7 @@
   "triggerOnDrafts": false,
   "triggerOnUpdates": false,
   "strictness": 2,
+  "includeAuthors": ["<github-login>"],
   "ignorePatterns": "",
   "instructions": "Review against CLAUDE.md, this repository's standards file. Flag code that copies a bad local pattern instead of refactoring it.",
   "customContext": {
