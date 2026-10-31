@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# https://docs.coderabbit.ai/reference/configuration
+
+language: en-US
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: false
+  auto_review:
+    # Reviews are asked for by hand: `@coderabbitai review`.
+    enabled: false
+    drafts: false
+    # CodeRabbit has no author allowlist, so with auto review off this list is
+    # the closest match to Greptile's includeAuthors.
+    ignore_usernames:
+      - "dependabot[bot]"
+      - "renovate[bot]"
+      - "cursor[bot]"
+  path_instructions:
+    - path: "**/*"
+      instructions: >-
+        Flag code that copies a bad local pattern instead of refactoring it.
+    - path: "plower/**"
+      instructions: >-
+        Skills and their reference pieces are instructions to an agent. Flag a
+        skill that contradicts its references or plower/README.md. The version
+        in plower/.claude-plugin/plugin.json and in the first line of the three
+        pieces in plower/skills/onboard/references must match.

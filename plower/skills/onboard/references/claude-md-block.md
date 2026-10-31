@@ -1,7 +1,7 @@
 <!-- plower:begin -->
 ## plower
 
-plower 1.4.1 · CLAUDE.md
+plower 1.4.2 · CLAUDE.md
 
 The standing rules for every agent working in this repository.
 
