@@ -44,7 +44,7 @@ Do not ask about review bots or merging, except for the Greptile author login in
 
 ## 3. Labels
 
-Create or update the five labels in `references/labels.md` over REST and read them back, as that file says. When a call is refused, give the user the label settings step it names, with a card offering "done", and read them back again. A label counts only when the read-back shows it.
+Create or update the four labels in `references/labels.md` over REST and read them back, as that file says. When a call is refused, give the user the label settings step it names, with a card offering "done", and read them back again. A label counts only when the read-back shows it.
 
 ## 4. The setup PR
 
@@ -99,7 +99,7 @@ A task counts as created only when the user confirms, with a card, that it is on
 
 Send one message listing each piece and setting with its state and, when it is not current, the user's next step:
 
-- **Repository**: the five labels, the setup PR with its link, the `CLAUDE.md` block, the CodeRabbit config, the Greptile config.
+- **Repository**: the four labels, the setup PR with its link, the `CLAUDE.md` block, the CodeRabbit config, the Greptile config.
 - **Project**: the plower install, the instructions block, the memory seed, thread model and effort, coordinator effort.
 - **Scheduled tasks**: each task with its name and time, or skipped, or not offered and why.
 
