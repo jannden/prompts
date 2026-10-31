@@ -13,11 +13,11 @@ On demand, only when you invoke them by name:
 | `inventory` | Maps what your app does from a user's point of view and asks you, item by item, to keep, improve or delete it. Ends in the chat with the decisions and a brief for the next task. |
 | `onboard` | Sets up one repository and its Project for plower: the review-bot configs, the labels, the `CLAUDE.md` block, the instructions block you paste, the memory seed the coordinator saves, and the scheduled tasks you add. Run it again to see which pieces are current, stale or drifted. |
 
-On a schedule (also on demand), with nobody present:
+On a schedule (also on demand). A scheduled run has nobody present; `consolidate` asks only when you run it by hand:
 
 | Skill | What it does |
 |---|---|
-| `consolidate` | Folds the open follow-up PRs (dependency bumps, small bot fixes, PRs you label `plower:consolidate`) into one PR for you to review and merge, then closes the originals that did not move. Never merges. |
+| `consolidate` | Folds the open smaller PRs into one PR for you to review and merge, then closes the originals that did not move. Run by hand, it lists every relevant open PR and asks which to fold, so you never label anything. On a schedule it cannot ask and folds only bot follow-ups (dependency bumps, small automated fixes). Never merges. |
 | `audit` | Researches one tree of the repository read-only for dead code, needless complexity, stale comments and missed best practices, keeps the areas worth a PR up to the cap you set, and has one subagent per area clean it up in its own worktree and open the PR. Edits nothing itself. |
 | `calibrate` | Compares the week's merged PRs with `STRATEGY.md` and, on drift, opens one PR with the smallest edit that brings it up to date. Never touches a section you marked approved. |
 
@@ -47,7 +47,7 @@ A Project thread loads the Project's plugins, its instructions, its memory and e
 | Memory seed | `MEMORY.md` in Project memory, saved in full with the memory tool, by the coordinator when `onboard` runs in a thread, or by `onboard` itself when it runs in the project conversation (you cannot edit Project memory, so you never paste it) | Facts and working preferences every thread needs: repository, proof commands, review bots, how threads handle review comments, plower's labels and branches, the scheduled tasks. |
 | `CLAUDE.md` block | The repository's root `CLAUDE.md`, added by the setup PR | The standing rules: test first, the holistic lens, simplification, prose, who merges, pushback and prefer-refactor. |
 
-Each piece starts with a line such as `plower 1.4.2 · instructions` and ends with `plower · end of instructions`, so a thread can quote which pieces it loaded and `onboard` can tell a current piece from a stale or cut one. The texts live in `skills/onboard/references/`.
+Each piece starts with a line such as `plower 1.5.0 · instructions` and ends with `plower · end of instructions`, so a thread can quote which pieces it loaded and `onboard` can tell a current piece from a stale or cut one. The texts live in `skills/onboard/references/`.
 
 ## Install
 
@@ -84,7 +84,7 @@ Run these once on a throwaway test repository in a test Project after installing
 - [ ] **inventory.** The chat ends with the grouped decisions and a brief, and the repository is unchanged.
 - [ ] **onboard.** The setup PR carries the bot configs and the `CLAUDE.md` block; the labels exist; before the setup PR merges, no scheduled task is created. With plower missing from the Project, `onboard` names the fix and installs nothing.
 - [ ] **Scheduled tasks.** Each task appears on the Project's Scheduled tasks tab, a Run now makes a new run, and its model is Sonnet 5.5. Note the effort it reports; it should be High. Ask a run what it can see: the Project instructions, the Project memory, the coordinator, a way to start Project threads. The skills must work when every answer is no, because the task prompt and the repository's `CLAUDE.md` carry what they need. Auto-fix pull requests is on for every task.
-- [ ] **consolidate.** Two Dependabot PRs, one feature PR and one conflicting PR: one consolidated PR folds the two Dependabot PRs and names the conflicting one. After you merge it, the next run closes the unmoved originals.
+- [ ] **consolidate.** Two Dependabot PRs, one feature PR and one conflicting PR. Run by hand, it asks about all four; the PRs you pick are folded into one consolidated PR, and it names any it had to leave out. A scheduled run (`ask: no`) folds only the two Dependabot PRs and names the others as not asked. After you merge it, the next run closes the unmoved originals.
 - [ ] **audit.** A planted dead-code area yields one PR: a cleanup subagent pushes its branch first and opens a PR with the area marker, and the run's report links it. A tree with only nitpicks ends `nothing:` and leaves the checkout unchanged.
 - [ ] **calibrate.** A week that fits `STRATEGY.md` ends `nothing:`; a merged PR that finishes a listed item opens one PR and leaves approved sections alone.
 - [ ] **Nobody present.** A scheduled run with an ambiguous case finishes without appearing under Waiting on you.
