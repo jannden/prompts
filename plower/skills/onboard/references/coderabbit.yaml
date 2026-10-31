@@ -7,6 +7,12 @@
 #   reviews.auto_review.enabled            false: no automatic review; a thread asks
 #                                          for each one with `@coderabbitai review`
 #   reviews.auto_review.drafts             false: drafts are not reviewed
+#   reviews.auto_review.ignore_usernames   the bot names below; add any that are missing,
+#                                          keep the others. CodeRabbit has no author
+#                                          allowlist (Greptile's includeAuthors), so with
+#                                          auto review off this denylist is the closest match
+#   reviews.auto_review.ignore_bots        removed when false: it overrides the dashboard's
+#                                          bot exclusion
 #   reviews.review_status                  false: no "review skipped" notice per PR
 #   reviews.path_instructions, path "**/*" the prefer-refactor line below
 #   knowledge_base.code_guidelines         enabled, with CLAUDE.md in filePatterns
@@ -29,12 +35,13 @@ reviews:
   auto_review:
     enabled: false
     drafts: false
-    # Dependency bots by name, so their PRs spend no credits. Their changes are
+    # Bots by name, so their PRs spend no credits. Dependency bump changes are
     # reviewed once, inside the consolidated PR. Applies when a review is
     # turned on again.
     ignore_usernames:
       - "dependabot[bot]"
       - "renovate[bot]"
+      - "cursor[bot]"
   path_instructions:
     - path: "**/*"
       instructions: >-

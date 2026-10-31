@@ -47,7 +47,7 @@ A Project thread loads the Project's plugins, its instructions, its memory and e
 | Memory seed | `MEMORY.md` in Project memory, saved in full with the memory tool, by the coordinator when `onboard` runs in a thread, or by `onboard` itself when it runs in the project conversation (you cannot edit Project memory, so you never paste it) | Facts and working preferences every thread needs: repository, proof commands, review bots, how threads handle review comments, plower's labels and branches, the scheduled tasks. |
 | `CLAUDE.md` block | The repository's root `CLAUDE.md`, added by the setup PR | The standing rules: test first, the holistic lens, simplification, prose, who merges, pushback and prefer-refactor. |
 
-Each piece starts with a line such as `plower 1.4.1 · instructions` and ends with `plower · end of instructions`, so a thread can quote which pieces it loaded and `onboard` can tell a current piece from a stale or cut one. The texts live in `skills/onboard/references/`.
+Each piece starts with a line such as `plower 1.4.2 · instructions` and ends with `plower · end of instructions`, so a thread can quote which pieces it loaded and `onboard` can tell a current piece from a stale or cut one. The texts live in `skills/onboard/references/`.
 
 ## Install
 

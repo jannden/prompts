@@ -1,4 +1,4 @@
-plower 1.4.1 · memory
+plower 1.4.2 · memory
 
 Facts for every thread in this Project, filled in by `onboard` and saved by the coordinator. The standing rules, including how to handle review comments and review bots, live in the plower block of each repository's root `CLAUDE.md`, which scheduled runs read too; the facts can each be read again from GitHub.
 

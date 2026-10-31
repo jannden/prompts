@@ -1,0 +1,9 @@
+{
+  "skipReview": "AUTOMATIC",
+  "triggerOnDrafts": false,
+  "triggerOnUpdates": false,
+  "strictness": 2,
+  "includeAuthors": ["jannden"],
+  "ignorePatterns": "LICENSE",
+  "instructions": "Flag code that copies a bad local pattern instead of refactoring it. Skills and their reference pieces are instructions to an agent: flag a skill that contradicts its references or plower/README.md. The version in plower/.claude-plugin/plugin.json and in the first line of the three pieces in plower/skills/onboard/references must match."
+}
