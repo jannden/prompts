@@ -1,6 +1,6 @@
 {
   "name": "plower",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "plower: a Claude Code Project's upkeep and standing rules. On demand: align, examine, inventory, onboard. Scheduled: consolidate, audit, calibrate. Standing rules: pushback, prefer-refactor. Sits beside Compound Engineering and needs nothing from it.",
   "author": {
     "name": "jannden"
